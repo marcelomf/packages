@@ -127,7 +127,8 @@ final class VideoPlayer {
       Uri uri, DataSource.Factory mediaDataSourceFactory, String formatHint) {
     int type;
     if (formatHint == null) {
-      type = Util.inferContentType(uri);
+      // type = Util.inferContentType(uri);
+      type = C.CONTENT_TYPE_HLS;
     } else {
       switch (formatHint) {
         case FORMAT_SS:
@@ -143,7 +144,7 @@ final class VideoPlayer {
           type = C.CONTENT_TYPE_OTHER;
           break;
         default:
-          type = -1;
+          type = C.CONTENT_TYPE_HLS;
           break;
       }
     }
