@@ -35,7 +35,7 @@ import 'typedefs.dart';
 ///  * [GoRoute], which provides APIs to define the routing table.
 ///  * [examples](https://github.com/flutter/packages/tree/main/packages/go_router/example),
 ///    which contains examples for different routing scenarios.
-class GoRouter extends ChangeNotifier with NavigatorObserver {
+class GoRouter extends ChangeNotifier implements NavigatorObserver {
   /// Default constructor to configure a GoRouter with a routes builder
   /// and an error page builder.
   ///
@@ -311,4 +311,18 @@ class GoRouter extends ChangeNotifier with NavigatorObserver {
       return platformDefault;
     }
   }
+
+  @override
+  void didStartUserGesture(Route route, Route? previousRoute) {
+    // TODO: implement didStartUserGesture
+  }
+
+  @override
+  void didStopUserGesture() {
+    // TODO: implement didStopUserGesture
+  }
+
+  @override
+  // TODO: implement navigator
+  NavigatorState? get navigator => throw UnimplementedError();
 }
