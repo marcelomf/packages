@@ -36,10 +36,12 @@ import 'typedefs.dart';
 ///  * [examples](https://github.com/flutter/packages/tree/main/packages/go_router/example),
 ///    which contains examples for different routing scenarios.
 class GoRouter extends ChangeNotifier implements NavigatorObserver {
+  GlobalKey<NavigatorState>? navigatorKey;
+
   /// Default constructor to configure a GoRouter with a routes builder
   /// and an error page builder.
   ///
-  /// The `routes` must not be null and must contain an [GoRouter] to match `/`.
+  /// The `routes`must not be null and must contain an [GoRouter] to match `/`.
   GoRouter({
     required List<RouteBase> routes,
     // TODO(johnpryan): Change to a route, improve error API
@@ -315,14 +317,18 @@ class GoRouter extends ChangeNotifier implements NavigatorObserver {
   @override
   void didStartUserGesture(Route route, Route? previousRoute) {
     // TODO: implement didStartUserGesture
+    navigatorKey?.currentState?.didStartUserGesture();
   }
 
   @override
   void didStopUserGesture() {
     // TODO: implement didStopUserGesture
+    navigatorKey?.currentState?.didStopUserGesture();
   }
 
   @override
   // TODO: implement navigator
-  NavigatorState? get navigator => throw UnimplementedError();
+  NavigatorState? get navigator {
+    return navigatorKey?.currentState;
+  }
 }
